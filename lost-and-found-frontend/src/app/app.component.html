@@ -1,0 +1,38 @@
+<div class="hero-banner">
+  <div class="hero-content">
+    <h1>Lost Something?</h1>
+    <p>We help people find what they’ve lost — <strong>{{ lostItemCount }}</strong> items found so far!</p>
+
+    <div class="search-bar">
+      <input type="text" [(ngModel)]="searchText" placeholder="Search by name or location" />
+      <select [(ngModel)]="filterCategory">
+        <option value="">All Categories</option>
+        <option>Electronics</option>
+        <option>Clothing</option>
+        <option>Documents</option>
+        <option>Others</option>
+      </select>
+      <button (click)="applyFilters()">Search</button>
+     
+    </div>
+  </div>
+</div>
+
+<!-- Show cards only after search is triggered -->
+<div class="card-container" *ngIf="searchTriggered && filteredItems.length > 0">
+  <mat-card *ngFor="let item of filteredItems" class="lost-card">
+    <img [src]="'http://localhost:3000'+item.imageUrl" alt="Item Image" *ngIf="item.imageUrl" width="100" />
+    <mat-card-title>{{ item.itemName }}</mat-card-title>
+    <mat-card-subtitle>{{ item.category }} - {{ item.lastSeenLocation }}</mat-card-subtitle>
+    <mat-card-content>
+      <p><strong>Lost on:</strong> {{ item.dateLost | date }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- Optional: message when no results -->
+<div *ngIf="searchTriggered && filteredItems.length === 0" class="no-results">
+  <p>No items found. Try a different search.</p>
+</div>
+
+<router-outlet></router-outlet>

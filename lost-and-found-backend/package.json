@@ -1,0 +1,21 @@
+{
+  "name": "lost-and-found-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "ts-node --project tsconfig.json src/index.ts"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.2",
+    "mysql2": "^3.14.0"
+  },
+  "devDependencies": {
+    "@types/multer": "^1.4.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
