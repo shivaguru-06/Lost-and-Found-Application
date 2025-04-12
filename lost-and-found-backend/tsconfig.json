@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "CommonJS", // Use commonjs
+      "moduleResolution": "node", // Default for commonjs
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "lib": ["es2022"]
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+  }
