@@ -1,33 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { Item } from './models/item';
 import { Router, RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
+import { ApiService } from './services/api.service';
 import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { ApiService } from './api.service'; // Import ApiService
-import { Item } from './item'; // Import your Item interface
+import { CommonModule } from '@angular/common';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    FormsModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule
-  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'Lost & Found';
+export class AppComponent implements OnInit{
+  title = 'lost-and-found-frontend';
+
   lostItemCount = 0;
 
   searchText = '';
@@ -45,7 +31,15 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.router.url);
     this.loadLostItems();
+  }
+
+  showSidebar: boolean = false;
+
+  isSidebarVisible(): boolean {
+    console.log(this.router.url);
+    return !this.router.url.includes('landing');
   }
 
   loadLostItems(): void {
@@ -69,9 +63,11 @@ export class AppComponent implements OnInit {
       (this.filterCategory ? item.category === this.filterCategory : true) &&
       (this.filterDate ? new Date(item.dateLost).toISOString().startsWith(this.filterDate) : true)
     );
+    console.log(this.filteredItems);
   }
 
   goToReportPage(): void {
     this.router.navigate(['/lost-items/new']);
   }
+
 }

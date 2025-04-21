@@ -1,0 +1,80 @@
+.hero {
+    background-image: url('src/assets/image.jpg'); /* Replace with your image path */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: rgb(237, 234, 233);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero-content {
+    z-index: 2;
+    padding: 20px;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+  }
+
+  .animated-btn {
+    position: relative;
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 16px;
+    color: white;
+    background: linear-gradient(135deg, #8e2de2, #a740ff); /* violet gradient */
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .animated-btn span {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .animated-btn::before {
+    content: "";
+    position: absolute;
+    left: -75%;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+    z-index: 0;
+  }
+  
+  .animated-btn:hover::before {
+    left: 130%;
+  }
+  
+  .animated-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(142, 45, 226, 0.4); /* violet glow */
+  }
+  
+  /* Optional bounce on load */
+  @keyframes bounceIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    60% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  
+  .animated-btn {
+    animation: bounceIn 0.6s ease;
+  }
+  

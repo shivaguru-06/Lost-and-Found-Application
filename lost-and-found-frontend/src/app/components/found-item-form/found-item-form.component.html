@@ -1,0 +1,99 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? "Update Found Item" : "Report Found Item" }}</h2>
+  <form
+    [formGroup]="foundItemForm"
+    (ngSubmit)="onSubmit()"
+    enctype="multipart/form-data"
+  >
+    <div class="form-total">
+      <div class="form-left">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Item Name</mat-label>
+          <input matInput formControlName="item_name" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category" required>
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            rows="3"
+            formControlName="description"
+            required
+          ></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Found Location</mat-label>
+          <input matInput formControlName="found_location" />
+        </mat-form-field>
+
+        <ng-container *ngIf="!isEditMode">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Date Found</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="date_found"
+              [max]="maxDate"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </ng-container>
+      </div>
+
+      <div class="form-right">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="contact_info"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Phone Number</mat-label>
+          <input matInput type="tel" formControlName="phone_number" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Address</mat-label>
+          <textarea
+            matInput
+            rows="2"
+            formControlName="address"
+            required
+          ></textarea>
+        </mat-form-field>
+
+        <label>Upload Image</label>
+        <input
+          type="file"
+          (change)="onImageSelected($event)"
+          accept="image/*"
+        />
+
+        <div *ngIf="imagePreview" class="image-preview">
+          <p>Preview:</p>
+          <img [src]="imagePreview" width="200" />
+        </div>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+</div>

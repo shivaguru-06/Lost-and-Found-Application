@@ -1,0 +1,129 @@
+
+  
+  
+  .form-container {
+    background: #f9f8f8;
+    padding: 30px 25px;
+    border-radius: 12px;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .form-total {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    
+    justify-content: space-evenly;
+  }
+  .form-left {
+      display: flex;
+      flex-direction: column;
+  
+      width: 100%;
+      max-width: 500px; 
+  
+      /* margin-left: 30px; */
+     
+  }
+  
+  .form-right {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 500px; 
+    
+      /* margin-left: 70px; */
+      
+  }
+  
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+ 
+  button[type="submit"] {
+    display: block;
+    margin: 20px auto 0;
+    width: 30%;
+
+    font-size: 16px;
+    font-weight: bold;
+    /* background-color: #234f27;
+    color: white; */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    letter-spacing: 3px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  .image-preview {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .image-preview img {
+    max-width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+} 
+
+/* .form-container {
+  display: flex;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.details-form, .image-upload {
+  flex: 1;
+  margin: 10px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  text-align: center;
+}
+
+.preview-container {
+  margin-top: 20px;
+}
+
+.preview-container img {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+} */

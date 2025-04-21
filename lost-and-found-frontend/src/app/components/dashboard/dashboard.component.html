@@ -1,0 +1,58 @@
+<div class="dashboard-container">
+    <div class="stats-cards">
+      <mat-card class="card lost" routerLink="/lost-items">
+        <mat-card-title>Lost Items</mat-card-title>
+        <mat-card-content>
+          <h2>{{ lostCount }}</h2>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-card class="card found" routerLink="/found-items">
+        <mat-card-title>Found Items</mat-card-title>
+        <mat-card-content>
+          <h2>{{ foundCount }}</h2>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <div class="recent-section">
+      <div class="recent-table">
+        <h3>Recently Lost Items</h3>
+        <mat-table [dataSource]="recentLost" class="mat-elevation-z8">
+            <ng-container matColumnDef="itemName">
+              <mat-header-cell *matHeaderCellDef> Item Name </mat-header-cell>
+              <mat-cell *matCellDef="let item"> {{ item.itemName }} </mat-cell>
+            </ng-container>
+          
+            <ng-container matColumnDef="lastSeenLocation">
+              <mat-header-cell *matHeaderCellDef> Last Seen Location </mat-header-cell>
+              <mat-cell *matCellDef="let item"> {{ item.lastSeenLocation }} </mat-cell>
+            </ng-container>
+          
+            <mat-header-row *matHeaderRowDef="['itemName', 'lastSeenLocation']"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: ['itemName', 'lastSeenLocation'];"></mat-row>
+          </mat-table>
+          
+      </div>
+  
+      <div class="recent-table">
+        <h3>Recently Found Items</h3>
+        <mat-table [dataSource]="recentFound" class="mat-elevation-z8">
+            <ng-container matColumnDef="itemName">
+              <mat-header-cell *matHeaderCellDef> Item Name </mat-header-cell>
+              <mat-cell *matCellDef="let item"> {{ item.item_name }} </mat-cell>
+            </ng-container>
+          
+            <ng-container matColumnDef="foundLocation">
+              <mat-header-cell *matHeaderCellDef> Found Location </mat-header-cell>
+              <mat-cell *matCellDef="let item"> {{ item.found_location }} </mat-cell>
+            </ng-container>
+          
+            <mat-header-row *matHeaderRowDef="['itemName', 'foundLocation']"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: ['itemName', 'foundLocation'];"></mat-row>
+          </mat-table>
+          
+      </div>
+    </div>
+  </div>
+  

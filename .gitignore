@@ -1,0 +1,11 @@
+lost-and-found-backend/node_modules
+
+lost-and-found-backend/src/config/environment.ts
+
+lost-and-found-backend/src/.env
+
+lost-and-found-frontend/node_modules
+
+lost-and-found-frontend/.angular
+
+lost-and-found-frontend/.vscode

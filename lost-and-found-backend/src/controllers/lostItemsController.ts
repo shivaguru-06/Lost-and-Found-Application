@@ -3,6 +3,7 @@ import { db } from '../config/database';
 
 export const getLostItems = async (req: Request, res: Response) => {
   try {
+    console.log('Fetching lost items from the database');
     const [rows] = await db.query('SELECT * FROM lost_items ORDER BY date_lost DESC');
     res.json(rows);
   } catch (error) {

@@ -1,0 +1,158 @@
+<!-- Search among found items -->
+<div class="hero-banner">
+  <div class="hero-content">
+    <h1>Found Something?</h1>
+    <p>
+      We help people find what they’ve lost —
+      <strong> {{ itemCount }}</strong> item(s) found so far!
+    </p>
+
+    <div class="search-bar">
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="Search by name or location"
+      />
+      <select [(ngModel)]="filterCategory">
+        <option value="">All Categories</option>
+        <option>Electronics</option>
+        <option>Clothing</option>
+        <option>Documents</option>
+        <option>Others</option>
+      </select>
+      <input
+        type="date"
+        [(ngModel)]="filterDate"
+        [max]="today"
+      />
+      <button (click)="applyFilters()">Search</button>
+    </div>
+  </div>
+
+  <div  *ngIf="searchTriggered && searchItems.length > 0">
+    <!-- <mat-card *ngFor="let item of searchItems" class="lost-card">
+      <img
+        [src]="item.imageUrl"
+        alt="Item Image"
+        *ngIf="item.imageUrl"
+        width="100"
+      />
+      <mat-card-title>{{ item.item_name }}</mat-card-title>
+      <mat-card-subtitle
+        >{{ item.category }} - {{ item.found_location }}</mat-card-subtitle
+      >
+      <mat-card-content>
+        <p><strong>Found on:</strong> {{ item.date_found | date }}</p>
+      </mat-card-content>
+    </mat-card> -->
+
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Category</th>
+          <th>Last Seen Location</th>
+          <th>Lost Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of searchItems">
+          <td>{{ item.item_name }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.found_location }}</td>
+          <td>{{ item.date_found | date:'mediumDate' }}</td>
+          <td>
+            <button (click)="viewDetails(item.id)" class="view-btn">View Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+</div>
+
+<div *ngIf="searchTriggered && searchItems.length === 0" class="no-results">
+  <p>No items found. Try a different search.</p>
+</div>
+
+<!-- Display all found items -->
+
+<div class="container">
+  <h1>Found Items</h1>
+
+  <!-- Post Found Item Button -->
+  <div class="center-button">
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/found-items/new']"
+    >
+      <mat-icon>add</mat-icon> I Found Something
+    </button>
+  </div>
+
+  <!-- Items Grid -->
+  <div class="items-grid" *ngIf="items.length > 0">
+    <mat-card *ngFor="let item of items" class="item-card">
+      <!-- ✅ Image Preview -->
+      <img
+        [src]="item.imageUrl"
+        alt="{{ item.item_name }}"
+        style="
+          width: 100%;
+          max-height: 250px;
+          object-fit: contain;
+          padding: 10px;
+        "
+      />
+
+      <mat-card-header>
+        <mat-card-title>{{ item.item_name }}</mat-card-title>
+        <!-- <mat-card-subtitle>{{ item.category }}</mat-card-subtitle> -->
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>
+          <strong>Found at:</strong>
+          {{ item.found_location || "Not specified" }}
+        </p>
+        <!-- <p>
+          <strong>Date Found:</strong>
+          {{
+            item.date_found
+              ? (item.date_found | date : "MMM d, yyyy")
+              : "Unknown"
+          }}
+        </p> -->
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button color="accent" *ngIf="item.id !== undefined"
+        (click)="viewDetails(item.id)"
+        >
+          View Details
+        </button>
+        <button
+          mat-button
+          color="accent"
+          *ngIf="item.id !== undefined"
+          (click)="editItem(item.id)"
+        >
+          Edit
+        </button>
+        <button
+          mat-button
+          color="accent"
+          *ngIf="item.id !== undefined"
+          (click)="onDelete(item.id)"
+        >
+          Delete
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- Message when no lost items -->
+  <p *ngIf="items.length === 0">No found items reported yet.</p>
+</div>

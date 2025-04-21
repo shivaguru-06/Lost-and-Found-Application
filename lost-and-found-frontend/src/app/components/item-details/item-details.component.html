@@ -1,0 +1,38 @@
+<body>
+    <div class="dialog-header" [ngClass]="isLostItem ? 'lost-header' : 'found-header'">
+        <h2 class="dialog-title">Item Details</h2>
+        <button mat-icon-button class="close-btn" (click)="closeDialog()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+<div class="item-detail-container">
+
+    <div class="item-image">
+        <img [src]="item[0].imageUrl" alt="Item Image">
+    </div>
+    <div class="item-info">
+        <h1 class="item-title">{{isLostItem ? item[0].itemName : item[0].item_name}}</h1>
+        <p class="item-description">{{item[0].description}}</p>
+        <p class="item-description"><strong>Category: </strong>{{item[0].category}}</p>
+        <p class="item-description">
+            <strong>{{ isLostItem ? 'Last Seen Location:' : 'Found Location:' }}</strong> 
+            {{ isLostItem ? item[0].lastSeenLocation : item[0].found_location }}
+          </p>
+          <p class="item-description">
+            <strong>{{ isLostItem ? 'Lost Date:' : 'Found Date:' }}</strong> 
+            {{ isLostItem ? item[0].dateLost : item[0].date_found }}
+          </p>
+          
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p><strong>Email: </strong>{{isLostItem ? item[0].contactInfo : item[0].contact_info}}</p>
+            <p><strong>Phone Number: </strong> {{item[0].phone_number}}</p>
+            <p><strong>Address: </strong>{{item[0].address}}</p>
+        </div>
+    </div>
+</div>
+</body>
+
+
+  
