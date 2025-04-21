@@ -5,10 +5,11 @@ import path from "path";
 import mysql from "mysql2";
 import { ResultSetHeader } from "mysql2";
 import { environment } from "./config/environment";
-import { env } from "process";
+import * as dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
-const PORT = environment.port || 3000;
+const PORT = process.env.PORTNO;
 
 // Simulated __dirname (safe if you're not using ES Modules)
 const __dirname = path.resolve();
@@ -31,10 +32,10 @@ const upload = multer({ storage });
 
 // ✅ MySQL connection
 const db = mysql.createConnection({
-  host: environment.host,
-  user: environment.user,
-  password: environment.pass,
-  database: environment.database,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
 });
 
 db.connect((err) => {
